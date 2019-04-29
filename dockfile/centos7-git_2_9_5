@@ -1,23 +1,6 @@
 FROM centos:7
 ENV LANG=en_US.utf8
 
-#install jdk
-#RUN mkdir /usr/local/java
-#ADD jdk8.tar /usr/local/java
-
-#set java env
-#ENV JAVA_HOME /usr/local/java/jdk1.8.0_65
-#ENV CLASSPATH .:$JAVA_HOME/lib
-#ENV PATH $PATH:$JAVA_HOME/bin
-
-#install tomcat
-#ADD apache-tomcat-7.0.94.tar.gz /usr/local/
-#RUN mv /usr/local/apache-tomcat-7.0.94 /usr/local/tomcat_sansan
-
-#run tomcat
-#COPY run_tomcat.sh /run_tomcat.sh
-#RUN chmod 777 /run_tomcat.sh
-
 #install git
 RUN yum -y install gcc automake autoconf libtool make perl-ExtUtils-MakeMaker curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc xmlto autoconf libcurl-devel wget
 #install docbook2X dependence
@@ -45,13 +28,3 @@ RUN make all doc info
 RUN make install install-doc install-html install-info
 RUN git --version
 
-#EXPOSE 8080
-
-#ENTRYPOINT ["/bin/bash"]
-#ENTRYPOINT ["/run_tomcat.sh"]
-
-#ADD git-2.9.5.tar.gz /usr/local/
-#COPY install_git.sh /install_git.sh
-#RUN chmod 777 /install_git.sh
-
-#ENTRYPOINT ["/install_git.sh"]
