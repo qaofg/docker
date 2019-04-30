@@ -1,0 +1,3 @@
+centos7-git_2_9_5
+
+在centos7的基础上，添加了git应用
