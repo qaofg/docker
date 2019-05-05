@@ -5,9 +5,7 @@ INFLUXDB_VERSION=v1.5.2
 username=registry.cn-hangzhou.aliyuncs.com/google_containers
 images=(
         kubernetes-dashboard-amd64:${DASHDOARD_VERSION}
-        heapster-grafana-amd64:${GRAFANA_VERSION}
         heapster-amd64:${HEAPSTER_VERSION}
-        heapster-influxdb-amd64:${INFLUXDB_VERSION}
         )
 for image in ${images[@]}
 do
