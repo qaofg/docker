@@ -1,0 +1,34 @@
+FROM qaofgwork/centos7-git_2_9_5:latest
+ENV LANG=en_US.utf8
+
+#install jdk
+RUN mkdir /usr/local/java
+ADD jdk-8u60-linux-x64.tar.gz /usr/local/java
+
+#set java env
+ENV JAVA_HOME /usr/local/java/jdk1.8.0_60
+ENV CLASSPATH .:$JAVA_HOME/lib
+ENV PATH $PATH:$JAVA_HOME/bin
+RUN java -version
+
+#install tomcat
+ADD apache-tomcat-7.0.88.tar /usr/local/
+RUN mv /usr/local/apache-tomcat-7.0.88 /usr/local/tomcat7
+
+#install ant
+ADD apache-ant-1.9.14-bin.tar.gz /usr/local/
+
+#ant env
+ENV ANT_HOME /usr/local/apache-ant-1.9.14
+ENV PATH $PATH:$ANT_HOME/bin
+RUN ant -version
+
+COPY project-sansan-java.sh /project-sansan-java.sh
+RUN chmod 777 /project-sansan-java.sh
+
+COPY .gitconfig ~/.gitconfig
+ADD ssh.tar /root/
+WORKDIR /root/
+RUN ls -a
+
+ENTRYPOINT ["/project-sansan-java.sh"]
