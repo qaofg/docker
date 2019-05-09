@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app-chainalliance
+    group: cn.tootoo
+    expose: "true"
+  name: app-chainalliance 
+  namespace: sansancloud
+spec:
+  ports:
+  - name: "http"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 31002
+  selector:
+    app: app-chainalliance
+    group: cn.tootoo
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
