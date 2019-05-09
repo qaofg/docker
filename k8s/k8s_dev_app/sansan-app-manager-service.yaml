@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app-manager
+    group: cn.tootoo
+    expose: "true"
+  name: app-manager 
+  namespace: sansancloud
+spec:
+  ports:
+  - name: "http"
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 31000
+  selector:
+    app: app-manager
+    group: cn.tootoo
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
